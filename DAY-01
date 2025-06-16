@@ -1,0 +1,25 @@
+#include <iostream>
+#include <string>
+
+std::string determineColor(const std::string& s) {
+       char columnChar = s[0];      // e.g., 'a'
+    char rowChar = s[1];         // e.g., '1'
+
+    int column = columnChar - 'a' + 1;  // 'a' -> 1, 'b' -> 2, ..., 'h' -> 8
+    int row = rowChar - '0';           // '1' -> 1, ..., '8' -> 8
+
+    // If (column + row) is even, it's Black. Otherwise, White.
+    if ((column + row) % 2 == 0)
+        return "Black";
+    else
+        return "White";
+
+}
+
+int main() {
+    std::string s;
+    std::cin >> s;
+    std::string result = determineColor(s);
+    std::cout << result << std::endl;
+    return 0;
+}
