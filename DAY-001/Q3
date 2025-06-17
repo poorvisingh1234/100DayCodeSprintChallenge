@@ -1,0 +1,45 @@
+#include <iostream>
+#include <unordered_map>
+#include <vector>
+#include <string>
+using namespace std;
+
+int main() {
+    int N;
+    cin >> N;
+
+    vector<string> strings;
+    unordered_map<string, int> freq;
+
+    for (int i = 0; i < N; ++i) {
+        string s;
+        cin >> s;            // Use cin >> s if strings don't contain spaces
+        strings.push_back(s); //We're declaring an empty vector of strings: vector<string> strings;
+
+Then for each input string s, we add it to the end of the vector using strings.push_back(s);
+
+
+        freq[s]++;
+    }
+
+    int k;
+    cin >> k;
+
+    int count = 0;
+    for (const string &s : strings) {
+        if (freq[s] == 1) {
+            count++;
+            if (count == k) {
+                cout << s << endl;
+                return 0;
+            }
+        }
+    }
+
+    cout << -1 << endl;
+    return 0;
+}
+
+//Time Complexity: O(N × L) L is lenght of string and N is number of string
+
+//Space Complexity: O(N × L)
