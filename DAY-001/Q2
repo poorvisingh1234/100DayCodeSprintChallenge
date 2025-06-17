@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+
+void find_youngest_member(int n, int m, std::vector<std::pair<int, int>> &gifts) {
+    std::vector<int> gifts_received(n + 1, 0); 
+    std::vector<bool> has_given(n + 1, false);
+
+    for (const auto& gift : gifts) {
+        int giver = gift.first;
+        int receiver = gift.second;
+        has_given[giver] = true;
+        gifts_received[receiver]++;
+    }
+
+    for (int i = 1; i <= n; ++i) {
+        if (!has_given[i] && gifts_received[i] == n - 1) {
+            std::cout << i << std::endl;
+            return;
+        }
+    }
+
+    std::cout << -1 << std::endl; 
+}
+
+int main() {
+    int n, m;
+    std::cin >> n >> m;
+    std::vector<std::pair<int, int>> gifts(m);
+    for (int i = 0; i < m; ++i) {
+        std::cin >> gifts[i].first >> gifts[i].second;
+    }
+    find_youngest_member(n, m, gifts);
+    return 0;
+}
+//TIME COMPLEXITY = O(n+m)
+//SPACE COMPLEXITY = O(n+m)
